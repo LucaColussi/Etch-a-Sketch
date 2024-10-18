@@ -39,18 +39,25 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: center;
-
+    align-items: flex-start; /* Allineamento verticale */
+    gap: 20px; /* Spazio tra la griglia e il bottone */
 }
 
 button {
-    width: 300px;
-    height: 100px;
-    font-size: 30px;
-    margin: 20px;
-    background-color: #4B5563;
+    font-weight: bold;
+    width: 200px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #2e3f56;
     color: white;
-    
+    border-radius: 5px;
+    border: 2px solid black;
 }
 
+button:hover {
+    background-color: #354863;
+}
 
 
