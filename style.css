@@ -12,7 +12,7 @@ header {
     justify-content: center;
     color: white;
     font-size: 60px;
-    padding: 20px 0px;
+    padding: 10px 0px;
 
     /*font sets*/
     font-family: "Caveat", cursive;
@@ -60,4 +60,9 @@ button:hover {
     background-color: #354863;
 }
 
+footer {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
 

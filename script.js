@@ -1,31 +1,19 @@
+let clicked = false;
+
+const square = document.querySelector("body");
+
+square.addEventListener("mousedown", function() {
+    clicked = true;
+})
+
+
+square.addEventListener("mouseup", function() {
+    clicked = false;
+})
+
 function getRandomColor() {
-    let letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+    return Math.floor(Math.random() * 255);
 }
-
-function createSquares() {
-    let cont = document.querySelector(".square");
-    cont.style.display = "flex";
-    cont.style.flexWrap = "wrap"; // Permette ai quadrati di andare a capo
-
-    for(let i = 0; i < 16*16; i++){
-        let square = document.createElement('div');
-        square.style.width = "37.5px";
-        square.style.height = "37.5px";
-        square.style.border = "1px solid black";
-        square.style.boxSizing = "border-box"; // Include il bordo nelle dimensioni
-
-        square.addEventListener('mouseover', function() {
-            square.style.backgroundColor = getRandomColor(); // Cambia il colore del quadrato
-        });
-        cont.appendChild(square);
-    }
-}
-
 
 function getSquares() {
     let nSquares;
@@ -65,13 +53,41 @@ function changeSquares(nSquares) {
         square.style.height = length + "px";
         square.style.border = "1px solid black";
         square.style.boxSizing = "border-box"; // Include il bordo nelle dimensioni
-
+        square.style.backgroundColor = "rgba(0, 0, 0, 0)"; // Colore nero con opacita' iniziale a 0
+    
         square.addEventListener('mouseover', function() {
-            square.style.backgroundColor = getRandomColor(); // Cambia il colore del quadrato
+            if(clicked) {
+
+                let currentOpacity = parseFloat(square.style.backgroundColor.split(",")[3]); // Estrai l'opacita' corrente
+                
+                if (isNaN(currentOpacity)) {
+                    currentOpacity = 1; // Nel caso in cui non ci sia opacita', impostala a 0
+                }
+
+                if (currentOpacity < 1) {
+                    currentOpacity = Math.min(currentOpacity + 0.1, 1); // Incrementa l'opacita' di 0.1 fino ad un massimo di 1
+                }
+                square.style.backgroundColor = `rgba(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()}, ${currentOpacity})`; // Imposta il colore di sfondo con la nuova opacita'
+            }
         });
 
+        square.addEventListener('mousedown', function() {
+
+                let currentOpacity = parseFloat(square.style.backgroundColor.split(",")[3]); // Estrai l'opacita' corrente
+                
+                if (isNaN(currentOpacity)) {
+                    currentOpacity = 1; // Nel caso in cui non ci sia opacita', impostala a 0
+                }
+
+                if (currentOpacity < 1) {
+                    currentOpacity = Math.min(currentOpacity + 0.1, 1); // Incrementa l'opacita' di 0.1 fino ad un massimo di 1
+                }
+                square.style.backgroundColor = `rgba(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()}, ${currentOpacity})`; // Imposta il colore di sfondo con la nuova opacita'
+            
+        });
+        
         cont.appendChild(square);
     }
 }
 
-createSquares();
+changeSquares(16);
