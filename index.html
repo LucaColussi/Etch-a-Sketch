@@ -12,11 +12,15 @@
 <body>
     <header> Etch-a-Sketch </header>
     <div class="group">
-        <div style="width: 200px;"></div>
+        <button onclick="reset()">Reset <br> grid</button>
         <div class="container">
             <div class="square"></div>
         </div>
-        <button onclick="getSquares()">Change squares quantity</button>
+        <div class="rightButtons">
+            <button onclick="getSquares()">Change squares quantity</button>
+            <button onclick="erase()">Eraser</button>
+            <button onclick="draw()">Draw</button>
+        </div>
     </div>
     <footer>
         <a href="https://github.com/LucaColussi" target="_blank">

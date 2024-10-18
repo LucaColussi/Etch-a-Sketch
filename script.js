@@ -1,4 +1,6 @@
 let clicked = false;
+let eraseClicked = false;
+let nSquares = 16;
 
 const square = document.querySelector("body");
 
@@ -16,7 +18,6 @@ function getRandomColor() {
 }
 
 function getSquares() {
-    let nSquares;
     while (true) {
         nSquares = prompt("Insert the number of squares per side (1-100): ");
         
@@ -54,7 +55,7 @@ function changeSquares(nSquares) {
         square.style.border = "1px solid black";
         square.style.boxSizing = "border-box"; // Include il bordo nelle dimensioni
         square.style.backgroundColor = "rgba(0, 0, 0, 0)"; // Colore nero con opacita' iniziale a 0
-    
+        
         square.addEventListener('mouseover', function() {
             if(clicked) {
 
@@ -67,7 +68,11 @@ function changeSquares(nSquares) {
                 if (currentOpacity < 1) {
                     currentOpacity = Math.min(currentOpacity + 0.1, 1); // Incrementa l'opacita' di 0.1 fino ad un massimo di 1
                 }
-                square.style.backgroundColor = `rgba(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()}, ${currentOpacity})`; // Imposta il colore di sfondo con la nuova opacita'
+                if(!eraseClicked){
+                    square.style.backgroundColor = `rgba(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()}, ${currentOpacity})`; // Imposta il colore di sfondo con la nuova opacita'
+                } else {
+                    square.style.backgroundColor = `rgba(0,0,0,0)`; 
+                }
             }
         });
 
@@ -80,9 +85,13 @@ function changeSquares(nSquares) {
                 }
 
                 if (currentOpacity < 1) {
-                    currentOpacity = Math.min(currentOpacity + 0.1, 1); // Incrementa l'opacita' di 0.1 fino ad un massimo di 1
+                    currentOpacity = Math.min(currentOpacity + 0.2, 1); // Incrementa l'opacita' di 0.1 fino ad un massimo di 1
                 }
-                square.style.backgroundColor = `rgba(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()}, ${currentOpacity})`; // Imposta il colore di sfondo con la nuova opacita'
+                if(!eraseClicked){
+                    square.style.backgroundColor = `rgba(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()}, ${currentOpacity})`; // Imposta il colore di sfondo con la nuova opacita'
+                } else {
+                    square.style.backgroundColor = `rgba(0,0,0,0)`; 
+                }
             
         });
         
@@ -90,4 +99,14 @@ function changeSquares(nSquares) {
     }
 }
 
-changeSquares(16);
+function reset(){
+    changeSquares(nSquares);
+}
+
+function erase(){
+    eraseClicked = true;
+}
+function draw(){
+    eraseClicked = false;
+}
+changeSquares(nSquares);

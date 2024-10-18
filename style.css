@@ -46,6 +46,7 @@ header {
 button {
     font-weight: bold;
     width: 200px;
+    height: 70px;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -64,5 +65,11 @@ footer {
     display: flex;
     justify-content: center;
     padding-top: 10px;
+}
+
+.rightButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
