@@ -12,12 +12,14 @@
 <body>
     <header> Etch-a-Sketch </header>
     <div class="group">
-        <button onclick="reset()">Reset <br> grid</button>
+        <div class="leftButtons">
+            <button onclick="reset()">Reset <br> grid</button>
+            <button onclick="getSquares()">Change squares quantity</button>
+        </div>
         <div class="container">
             <div class="square"></div>
         </div>
         <div class="rightButtons">
-            <button onclick="getSquares()">Change squares quantity</button>
             <button onclick="erase()">Eraser</button>
             <button onclick="draw()">Draw</button>
         </div>

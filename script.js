@@ -106,7 +106,9 @@ function reset(){
 function erase(){
     eraseClicked = true;
 }
+
 function draw(){
     eraseClicked = false;
 }
+
 changeSquares(nSquares);
